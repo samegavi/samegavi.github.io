@@ -52,12 +52,10 @@
 		    		<ul>
 								<li style="display:none;"><a href="#end-nav" class="skip-navigation">Skip Navigation</a></li>
 		        		<li><a href="/ml4a/">ml4a</a></li>
-			        	<li><a href="/guides/">guides</a></li>
-			        	<li><a href="/demos/">demos</a></li>
-			        	<li><a href="/classes/">classes</a></li>
-			        	<li><a href="https://github.com/ml4a">code</a></li>
-			        	<li><a href="https://join.slack.com/t/ml-4a/shared_invite/enQtNjA4MjgzODk1MjA3LTlhYjQ5NWQ2OTNlODZiMDRjZTFmNDZiYjlmZWYwNGM0YjIxNjE3Yjc0NWVjMmVlZjNmZDhmYTkzZjk0ZTg1ZGM">slack</a></li>
-			        	<li><a href="https://www.twitter.com/ml4a_">twitter</a></li>
+			        	<li><a href="/activities/">activities</a></li>
+			        	<li><a href="/hobbies/">hobbies</a></li>
+			        	<li><a href="https://github.com/samegavi">code</a></li>
+			        	<li><a href="https://www.twitter.com/samegavi">twitter</a></li>
 		    		</ul>
 				</nav>
 			</div>
@@ -74,9 +72,9 @@
 		<!-- footer -->
 		<footer>
     		<ul>
-        		<li><a href="/about/">about</a></li>
-        		<li><a href="/guides/Contribute/">contribute</a></li>
-        		<li><a href="https://github.com/ml4a">github.com/ml4a</a></li>
+        		<li><a href="/about/"></a></li>
+        		<li><a href="/guides/Contribute/"></a></li>
+        		<li><a href="https://github.com/ml4a"></a></li>
 			</ul>
 		</footer>
 
