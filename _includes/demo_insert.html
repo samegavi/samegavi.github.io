@@ -1,0 +1,75 @@
+{% assign demo = site.demos | where:"url", include.path | first %}
+
+<script src="{{ demo.script }}" type="text/javascript"></script>
+
+<script>
+
+	{% if include.parent_div %}
+		var parent_div = document.getElementById("{{include.parent_div}}");
+	{% else %}
+		var parent_div = document.body;
+	{% endif %}
+
+	var width = {{demo.width}};;
+	var height = {{demo.height}};
+
+	var demo_div = document.createElement('div');
+	var control_panel = document.createElement('div');
+	var control_panel_meta = document.createElement('div');
+	var control_panel_options = document.createElement('div');
+	var description_panel = document.createElement('div');
+	var canvas = document.createElement('canvas');
+	control_panel.appendChild(control_panel_meta);
+	control_panel.appendChild(control_panel_options);
+	demo_div.appendChild(control_panel);
+	demo_div.appendChild(description_panel);
+	demo_div.appendChild(canvas);
+	parent_div.appendChild(demo_div);
+	demo_div.className = 'demo_main';
+	demo_div.style.width = width+"px";
+	control_panel.className = 'demo_control_panel';
+	control_panel_meta.className = 'demo_control_panel_meta';
+	control_panel_options.className = 'demo_control_panel_options';
+	control_panel_meta.innerHTML = 'Demo: {{page.title}} &nbsp;&nbsp; [<a href="{{demo.url}}">demo page</a>] &nbsp;&nbsp; [<a href="https://github.com/ml4a/ml4a.github.io/blob/master{{demo.script}}">view source</a>]';
+	description_panel.className = 'demo_description_panel';
+	canvas.width = width;
+	canvas.height = height;
+	canvas.style = 'margin:auto; display:block;';
+
+	function set_text_panel(description_panel_, text, refresh_mathjax) {
+		description_panel_.innerHTML = text;
+		if (refresh_mathjax) {
+			MathJax.Hub.Queue(["Typeset", MathJax.Hub, description_panel_]);
+		}
+	};
+
+	function set_control_panel_height(description_panel_, height) {
+		description_panel_.style.height = height+"px";
+		description_panel_.style.padding = "15px"; 
+	};
+	
+	function add_control_panel_action(text, action) {
+		var control_panel_option = document.createElement('div');
+		control_panel_option.className = 'demo_control_panel_option';
+		control_panel_option.innerHTML = text;
+		control_panel_option.onclick = action;
+		control_panel_options.appendChild(control_panel_option);
+	};
+
+	function add_control_panel_menu(options, action) {
+		var control_panel_menu = document.createElement('select');
+		control_panel_menu.className = 'demo_control_panel_option';
+		options.forEach(function(o) {control_panel_menu.innerHTML+=("<option>"+o+"</option>")});
+		$(control_panel_menu).on('change', action);
+		control_panel_options.appendChild(control_panel_menu);
+	};
+
+	var parent = {demo_div:demo_div, description_panel_div:description_panel, canvas:canvas};
+
+	{% if demo.args %}
+		demo(parent, width, height, {{demo.args}});
+	{% else %}
+		demo(parent, width, height);
+	{% endif %}
+
+</script>

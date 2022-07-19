@@ -1,9 +1,4 @@
----
-layout: default
-title: Activities
----
-
-<style>
+I"Û<style>
 .project {
     width:280px;
     height:200px;
@@ -74,24 +69,38 @@ title: Activities
 
 </style>
 
-
-
 <div id="platforms">
 	<div id="platform_all" class="platform"><a href="javascript:displayAll();">All</a></div>
 	<div id="platform_python" class="platform"><a href="javascript:displayByKey('python');"></a></div>
 	<div id="platform_openframeworks" class="platform"><a href="javascript:displayByKey('openframeworks');"></a></div>
 </div>
 
+<!--  -->
 
-
-
-{% include guide_preview.md name="blaxtarlines01" %}
-
-
-
-
-
-
+<div class="project python">
+	<a href="https://www.instagram.com/p/Cfb39Dmoks9/?igshid=YmMyMTA2M2Y=">
+		<img src="/images/activities_thumbs/blaxtarlines01.jpg" />
+		<div class="overlay">
+			<div class="overlay_title">
+				Blaxtarlines Art Talk
+			</div>
+<!-- 			<div class="overlay_description">
+				Infinity & beyond, paradoxes at the heart of Mathematics
+			</div> -->
+			<div class="overlay_summary">
+				<ul>
+				
+					<li>History of Mathematics</li> 
+				
+					<li>Cantor, Set theory &amp; Infinities</li> 
+				
+					<li>Russel, Frege &amp; the foundations of Mathematics</li> 
+							
+				</ul>
+			</div>
+		</div>
+	</a>
+</div>
 
 <script>
 
@@ -120,3 +129,5 @@ function displayByKey(keyword) {
 displayAll();
 
 </script>
+
+:ET
