@@ -13,6 +13,9 @@ collections:
   drawings:
     output: true
     permalink: /drawings/:path/  
+  building-a-web-application:
+    output: true
+    permalink: /building-a-web-application/:path/   
   demos:
     output: true
     permalink: /demos/:path/
