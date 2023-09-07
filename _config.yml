@@ -9,13 +9,7 @@ collections:
     permalink: /ml4a/:path/
   activities:
     output: true
-    permalink: /activities/:path/
-  drawings:
-    output: true
-    permalink: /drawings/:path/  
-  building-a-web-application:
-    output: true
-    permalink: /building-a-web-application/:path/   
+    permalink: /activities/:path  
   demos:
     output: true
     permalink: /demos/:path/
