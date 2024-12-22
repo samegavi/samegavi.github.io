@@ -52,6 +52,7 @@
 		    		<ul>
 								<li style="display:none;"><a href="#end-nav" class="skip-navigation">Skip Navigation</a></li>
 			        	<li><a href="/activities/">activities</a></li>
+						<li><a href="/demo/">demo</a></li>
 			        	<li><a href="https://github.com/samegavi">code</a></li>
 			        	<li><a href="https://www.twitter.com/samegavi">twitter</a></li>
 		    		</ul>
