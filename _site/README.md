@@ -1,1 +1,0 @@
-# samegavi.github.io
