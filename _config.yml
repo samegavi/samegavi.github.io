@@ -10,9 +10,9 @@ collections:
   activities:
     output: true
     permalink: /activities/:path  
-  demos:
+  demo:
     output: true
-    permalink: /demos/:path/
+    permalink: /demo/:path/
   pages:
     output: true
     permalink: /:path/
