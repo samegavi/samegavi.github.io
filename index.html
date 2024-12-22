@@ -10,6 +10,7 @@
       align-items: center;
       background: #f0f0f0;
       font-family: Arial, sans-serif;
+      position: relative;
     }
     
     .name {
@@ -21,6 +22,20 @@
     .letter {
       display: inline-block;
       animation: bounce 1s ease-in-out infinite;
+    }
+    
+    .corner-link {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    
+    .corner-link:hover {
+      text-decoration: underline;
+      color: #45b7d1;
     }
     
     @keyframes bounce {
@@ -48,6 +63,7 @@
   </style>
 </head>
 <body>
+  <a href="demo/norainbowsky/" class="corner-link">NoRainbowSky</a>
   <div class="name">
     <span class="letter">S</span>
     <span class="letter">a</span>
