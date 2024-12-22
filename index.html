@@ -26,13 +26,31 @@
     
     .corner-link {
       position: absolute;
-      /* Moving up by reducing the top value by half */
       top: 16.5vw;
       left: 20px;
       text-decoration: none;
       color: #333;
       font-family: 'Comic Sans MS', 'Marker Felt', cursive;
       font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .new-tag {
+      background-color: #ff6b6b;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      font-family: Arial, sans-serif;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
     
     .corner-link:hover {
@@ -65,7 +83,10 @@
   </style>
 </head>
 <body>
-  <a href="demo/norainbowsky/" class="corner-link">NoRainbowSky</a>
+  <a href="demo/norainbowsky/" class="corner-link">
+    NoRainbowSky
+    <span class="new-tag">NEW</span>
+  </a>
   <div class="name">
     <span class="letter">S</span>
     <span class="letter">a</span>
@@ -81,3 +102,8 @@
   </div>
 </body>
 </html>
+
+
+
+
+
