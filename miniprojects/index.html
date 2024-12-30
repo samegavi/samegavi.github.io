@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Previous head content remains the same until style tag -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mini projects</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Previous styles remain the same */
         * {
             margin: 0;
             padding: 0;
@@ -24,8 +26,29 @@
             font-family: 'Space Mono', monospace;
             font-size: 2.25rem;
             font-weight: normal;
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
             text-align: center;
+        }
+
+        .rainbow-text {
+            display: inline-block;
+        }
+
+        .rainbow-text span {
+            display: inline-block;
+        }
+
+        /* Rest of the previous styles remain the same */
+        .tags-subtext {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+
+        .tags-subtext span:not(:last-child)::after {
+            content: " · ";
+            margin: 0 0.25rem;
         }
 
         .container {
@@ -146,7 +169,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>mini projects</h1>
+        <h1 id="pageTitle">mini projects</h1>
+        <div class="tags-subtext" id="projectTags">
+            <!-- Tags will be inserted here by JavaScript -->
+        </div>
         
         <div class="gallery" id="projectGallery">
             <!-- Projects will be inserted here by JavaScript -->
@@ -165,13 +191,13 @@
                 type: "embed"
             },
             {
-                title: "TRANSFER(S)",
-                projectType: "website",
-                description: "Got the rare opportunity to lead the design of the online information experience for Ibrahim Mahama's TRANSFER(S) exhibition at Kunsthalle Osnabruck in Germany and RedClay Studios in Tamale, Ghana. Grateful to curators Kwasi Ohene-Ayeh and Bettina Klein for the opportunity",
-                embedUrl: "https://transfer-s.org/",
-                projectUrl: "https://transfer-s.org/",
-                publishDate: "July 2023",
-                type: "embed"
+                title: "microDakar",
+                projectType: "LED light animation",
+                description: "these BBC microbit 5 x 5 LED display animations are variations on themes such as Religion, Urban Density, Entrance Design and the River Senegal. Inspired by a visit to Senegal in September 2024 and two city books: Christopher Niemann's drawings in Abstract City and Teju Cole's superb variations on a theme in Open City",
+                imageUrl: "microbit.gif",
+                projectUrl: "https://www.youtube.com/shorts/f586tZsZIIw",
+                publishDate: "September 2024",
+                type: "image"
             },
             {
                 title: "Dark Echo",
@@ -183,15 +209,61 @@
                 type: "embed"
             },
             {
-                title: "microDakar",
-                projectType: "LED light animation",
-                description: "these BBC microbit 5 x 5 LED display animations are variations on themes such as Religion, Urban Density, Entrance Design and the River Senegal. Inspired by a visit to Senegal in September 2024 and two city books: Christopher Niemann's drawings in Abstract City and Teju Cole's superb variations on a theme in Open City",
-                imageUrl: "microbit.gif",  // You'll need to update this path to the actual location of your GIF
-                projectUrl: "#",  // Update this with the actual project URL if available
-                publishDate: "September 2024",
-                type: "image"
+                title: "TRANSFER(S)",
+                projectType: "website",
+                description: "Got the rare opportunity to lead the design of the online information experience for Ibrahim Mahama's TRANSFER(S) exhibition at Kunsthalle Osnabruck in Germany and RedClay Studios in Tamale, Ghana. Grateful to curators Kwasi Ohene-Ayeh and Bettina Klein for the opportunity",
+                embedUrl: "https://transfer-s.org/",
+                projectUrl: "https://transfer-s.org/",
+                publishDate: "July 2023",
+                type: "embed"
             }
         ];
+
+        // Function to convert month name to number for sorting
+        function getMonthNumber(monthStr) {
+            return new Date(`${monthStr} 1, 2000`).getMonth();
+        }
+
+        // Sort projects by date (most recent first)
+        projects.sort((a, b) => {
+            const [aMonth, aYear] = a.publishDate.split(' ');
+            const [bMonth, bYear] = b.publishDate.split(' ');
+            
+            if (aYear !== bYear) {
+                return parseInt(bYear) - parseInt(aYear);
+            }
+            return getMonthNumber(bMonth) - getMonthNumber(aMonth);
+        });
+
+        function colorizeTitle() {
+            const title = document.getElementById('pageTitle');
+            const text = title.textContent;
+            const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#74C2E1'];
+            let colorIndex = 0;
+            let lastColorIndex = -1;
+
+            const colorizedText = text.split('').map(char => {
+                if (char === ' ') {
+                    return `<span>${char}</span>`;
+                }
+                
+                // Ensure no consecutive letters have the same color
+                while (colorIndex === lastColorIndex) {
+                    colorIndex = Math.floor(Math.random() * colors.length);
+                }
+                lastColorIndex = colorIndex;
+                
+                return `<span style="color: ${colors[colorIndex]}">${char}</span>`;
+            }).join('');
+
+            title.innerHTML = `<span class="rainbow-text">${colorizedText}</span>`;
+        }
+
+        function renderTags() {
+            const tags = [...new Set(projects.map(project => project.projectType))];
+            const tagsElement = document.getElementById('projectTags');
+            tagsElement.innerHTML = tags.map(tag => `<span>${tag}</span>`).join('');
+        }
 
         function createProjectCard(project) {
             const mediaContent = project.type === 'embed' 
@@ -234,8 +306,12 @@
             galleryElement.innerHTML = projects.map(project => createProjectCard(project)).join('');
         }
 
-        // Initialize the gallery when the page loads
-        document.addEventListener('DOMContentLoaded', renderGallery);
+        // Initialize the gallery and tags when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            colorizeTitle();
+            renderTags();
+            renderGallery();
+        });
     </script>
 </body>
 </html>
