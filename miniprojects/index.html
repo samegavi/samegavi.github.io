@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: rgb(249 250 251);
+            color: #333;
+            padding: 1.5rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 72rem;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 12rem;
+            object-fit: cover;
+        }
+
+        .card-iframe {
+            width: 100%;
+            height: 12rem;
+            border: none;
+            background: #f8f8f8;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .project-type {
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .external-link {
+            color: #3b82f6;
+            transition: color 0.3s ease;
+        }
+
+        .external-link:hover {
+            color: #2563eb;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .card-description a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .card-description a:hover {
+            text-decoration: underline;
+        }
+
+        .card-footer {
+            padding: 0 1rem 1rem;
+        }
+
+        .publish-date {
+            color: #666;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mini Projects</h1>
+        
+        <div class="gallery" id="projectGallery">
+            <!-- Projects will be inserted here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        const projects = [
+            {
+                title: "NoRainbowsky",
+                projectType: "data visualization",
+                description: `using a single html file to visualise the noise from <a href="https://www.bewitched.com/demo/rainbowsky/" target="_blank" rel="noopener noreferrer">Rainbowsky</a> a pixel at a time. Inspired by forms that bring emphasis to techniques and technologies of display rather than show content`,
+                embedUrl: "https://samegavi.github.io/demo/norainbowsky/",
+                projectUrl: "demo/norainbowsky/",
+                publishDate: "December 2024",
+                type: "embed"
+            },
+            {
+                title: "Audio Visualizer",
+                projectType: "interactive experiment",
+                description: "Real-time audio visualization using Web Audio API and Three.js. Features multiple visualization modes and customizable color schemes.",
+                imageUrl: "/api/placeholder/400/250",
+                projectUrl: "https://example.com/audio-viz",
+                publishDate: "November 2024",
+                type: "image"
+            },
+            {
+                title: "Interactive Typography",
+                projectType: "web experiment",
+                description: "Typography experiments with mouse interaction and physics simulation. Letters respond to user movement and environmental forces.",
+                imageUrl: "/api/placeholder/400/250",
+                projectUrl: "https://example.com/typography",
+                publishDate: "October 2024",
+                type: "image"
+            },
+            {
+                title: "Particle System Explorer",
+                projectType: "interactive demo",
+                description: "A sandbox for experimenting with different particle system behaviors and effects. Includes presets and customizable parameters.",
+                imageUrl: "/api/placeholder/400/250",
+                projectUrl: "https://example.com/particles",
+                publishDate: "September 2024",
+                type: "image"
+            }
+        ];
+
+        function createProjectCard(project) {
+            const mediaContent = project.type === 'embed' 
+                ? `<iframe src="${project.embedUrl}" class="card-iframe" title="${project.title} demo" loading="lazy"></iframe>`
+                : `<img src="${project.imageUrl}" alt="${project.title}" class="card-image">`;
+
+            return `
+                <article class="card">
+                    ${mediaContent}
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="title-container">
+                                <h2 class="card-title">${project.title}</h2>
+                                <span class="project-type">· ${project.projectType}</span>
+                            </div>
+                            <a 
+                                href="${project.projectUrl}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="external-link"
+                            >
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                        <p class="card-description">${project.description}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="publish-date">${project.publishDate}</span>
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderGallery() {
+            const galleryElement = document.getElementById('projectGallery');
+            galleryElement.innerHTML = projects.map(project => createProjectCard(project)).join('');
+        }
+
+        // Initialize the gallery when the page loads
+        document.addEventListener('DOMContentLoaded', renderGallery);
+    </script>
+</body>
+</html>
