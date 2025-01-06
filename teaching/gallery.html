@@ -9,14 +9,14 @@
             font-family: sans-serif;
             margin: 0;
             display: flex;
-            flex-direction: column; /* Add flex-direction: column */
+            flex-direction: column;
             min-height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #fff;
         }
 
-        .header { /* Add a header for top spacing */
-            height: 80px; /* Adjust height as needed */
-            background-color: #fff; /* Or your desired header color */
+        .header {
+            height: 80px;
+            background-color: #fff; 
         }
 
         .container {
@@ -26,24 +26,18 @@
             display: flex;
         }
 
-        .navigation {
-            width: 250px;
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-        }
-
         .gallery {
             flex-grow: 1;
             padding: 20px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            grid-gap: 20px;
+            grid-gap: 10px; /* Reduced grid-gap to 10px */
         }
 
         .gallery img {
             width: 100%;
-            height: auto;
+            height: calc(100vh - 200px);
+            object-fit: cover;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             cursor: pointer;
@@ -84,13 +78,12 @@
 </head>
 <body>
 
-    <div class="header"></div> <div class="container">
-        <div class="navigation">
-            </div>
+    <div class="header"></div> 
+    <div class="container">
         <div class="gallery">
-            <img src="globalcode.jpg" alt="Image 1">
-            <img src="infinity2.jpg" alt="Image 2">
-            <img src="infinity1.jpg" alt="Image 3">
+            <img src="image1.jpg" alt="Image 1">
+            <img src="image2.jpg" alt="Image 2">
+            <img src="image3.jpg" alt="Image 3">
             <img src="image4.jpg" alt="Image 4">
             <img src="image5.jpg" alt="Image 5">
             <img src="image6.jpg" alt="Image 6">
