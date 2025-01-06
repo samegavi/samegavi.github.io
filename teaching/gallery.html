@@ -6,36 +6,119 @@
     <title>Image Gallery</title>
     <style>
         body {
+            font-family: sans-serif;
             margin: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column; /* Add flex-direction: column */
             min-height: 100vh;
+            background-color: #f0f0f0;
         }
 
-        #gallery {
+        .header { /* Add a header for top spacing */
+            height: 80px; /* Adjust height as needed */
+            background-color: #fff; /* Or your desired header color */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .navigation {
+            width: 250px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .gallery {
+            flex-grow: 1;
+            padding: 20px;
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Adjust number of columns as needed */
-            grid-gap: 20px; /* Adjust gap between images */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 20px;
         }
 
-        #gallery img {
+        .gallery img {
             width: 100%;
             height: auto;
-            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <div id="gallery">
-        <img src="globalcode.jpg" alt="Image 1">
-        <img src="infinity2.jpg" alt="Image 2">
-        <img src="infinity1.jpg" alt="Image 3">
-        <img src="image4.jpg" alt="Image 4">
-        <img src="image5.jpg" alt="Image 5">
-        <img src="image6.jpg" alt="Image 6">
+    <div class="header"></div> <div class="container">
+        <div class="navigation">
+            </div>
+        <div class="gallery">
+            <img src="globalcode.jpg" alt="Image 1">
+            <img src="infinity2.jpg" alt="Image 2">
+            <img src="infinity1.jpg" alt="Image 3">
+            <img src="image4.jpg" alt="Image 4">
+            <img src="image5.jpg" alt="Image 5">
+            <img src="image6.jpg" alt="Image 6">
+        </div>
     </div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close-btn">&times;</span>
+        <img src="" id="lightbox-img">
+    </div>
+
+    <script>
+        const galleryImages = document.querySelectorAll('.gallery img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.close-btn');
+
+        galleryImages.forEach(image => {
+            image.addEventListener('click', () => {
+                lightboxImage.src = image.src;
+                lightbox.style.display = 'flex';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+    </script>
 
 </body>
 </html>
