@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Previous head content remains the same until style tag -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mini projects</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Previous styles remain the same */
         * {
             margin: 0;
             padding: 0;
@@ -38,7 +36,6 @@
             display: inline-block;
         }
 
-        /* Rest of the previous styles remain the same */
         .tags-subtext {
             text-align: center;
             color: #666;
@@ -171,16 +168,23 @@
     <div class="container">
         <h1 id="pageTitle">mini projects</h1>
         <div class="tags-subtext" id="projectTags">
-            <!-- Tags will be inserted here by JavaScript -->
         </div>
         
         <div class="gallery" id="projectGallery">
-            <!-- Projects will be inserted here by JavaScript -->
         </div>
     </div>
 
     <script>
         const projects = [
+            {
+                title: "NoRainbowsky Checkboxes",
+                projectType: "checkbox display visualization",
+                description: `NoRainbowsky again but the unit of display now is a checkbox not a pixel. The <a href="https://onemillioncheckboxes.com/" target="_blank" rel="noopener noreferrer">One Million Checkboxes</a> web game has indeed been an influence`,
+                embedUrl: "https://samegavi.github.io/demo/norainbowsky/checkbox.html",
+                projectUrl: "demo/norainbowsky/checkbox.html",
+                publishDate: "January 2025",
+                type: "embed"
+            },
             {
                 title: "NoRainbowsky",
                 projectType: "data visualization",
@@ -219,12 +223,10 @@
             }
         ];
 
-        // Function to convert month name to number for sorting
         function getMonthNumber(monthStr) {
             return new Date(`${monthStr} 1, 2000`).getMonth();
         }
 
-        // Sort projects by date (most recent first)
         projects.sort((a, b) => {
             const [aMonth, aYear] = a.publishDate.split(' ');
             const [bMonth, bYear] = b.publishDate.split(' ');
@@ -247,7 +249,6 @@
                     return `<span>${char}</span>`;
                 }
                 
-                // Ensure no consecutive letters have the same color
                 while (colorIndex === lastColorIndex) {
                     colorIndex = Math.floor(Math.random() * colors.length);
                 }
@@ -306,7 +307,6 @@
             galleryElement.innerHTML = projects.map(project => createProjectCard(project)).join('');
         }
 
-        // Initialize the gallery and tags when the page loads
         document.addEventListener('DOMContentLoaded', () => {
             colorizeTitle();
             renderTags();
