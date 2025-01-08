@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NoRainbowsky Checkboxes</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            background: white;
+        }
+
+        #checkbox-container {
+            display: grid;
+            width: 100vw;
+            height: 100vh;
+            grid-template-columns: repeat(auto-fill, 20px);
+            grid-template-rows: repeat(auto-fill, 20px);
+            gap: 2px;
+            padding: 2px;
+        }
+
+        .checkbox-wrapper {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        #info {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 0.5em 1em;
+            font-size: 14px;
+            line-height: 1.5;
+            border-top: 1px solid #eee;
+        }
+
+        #stats, #currentPost, #credit {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #credit {
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div id="checkbox-container"></div>
+    <div id="info">
+        <div id="stats">
+            <span id="totalPosts">0</span> of <span id="itemCount">0</span> 
+        </div>
+        <div id="credit">Based on the noise from <a href="https://www.bewitched.com/demo/rainbowsky">rainbowsky</a> by <a
+            href="https://bsky.app/profile/wattenberg.bsky.social">Martin Wattenberg</a></div>
+    </div>
+
+    <script>
+        const JETSTREAMS = [
+            'wss://jetstream1.us-east.bsky.network',
+            'wss://jetstream2.us-east.bsky.network',
+            'wss://jetstream1.us-west.bsky.network',
+            'wss://jetstream2.us-west.bsky.network'
+        ];
+
+        // Calculate grid size based on screen size
+        const containerWidth = window.innerWidth;
+        const containerHeight = window.innerHeight;
+        const checkboxSize = 22; // 20px + 2px gap
+        const cols = Math.floor(containerWidth / checkboxSize);
+        const rows = Math.floor(containerHeight / checkboxSize);
+        const totalCheckboxes = cols * rows;
+
+        // Create checkboxes
+        const container = document.getElementById('checkbox-container');
+        const checkboxes = [];
+        for (let i = 0; i < totalCheckboxes; i++) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'checkbox-wrapper';
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            wrapper.appendChild(checkbox);
+            container.appendChild(wrapper);
+            checkboxes.push(checkbox);
+        }
+
+        // Initialize counters
+        let checkedCount = 0;
+        let isCheckingPhase = true;
+        let totalPosts = 0;
+
+        // Color detection patterns
+        const colorPatterns = {
+            hex: /#([0-9a-f]{6})\b/gi,
+            rgb: /rgb\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)/gi,
+            rgba: /rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*[\d.]+\s*\)/gi,
+            namedColors: /\b(red|blue|green|yellow|purple|orange|pink|brown|gray|violet|indigo|cyan|magenta|lime|teal|maroon|navy|olive|aqua|silver|gold)\b/gi
+        };
+
+        function updateStats() {
+            document.getElementById('totalPosts').textContent = checkedCount;
+            document.getElementById('itemCount').textContent = totalCheckboxes;
+        }
+
+        function extractColors(text) {
+            const colors = [];
+            let namedColors = [];
+            
+            const hexMatches = text.match(colorPatterns.hex) || [];
+            colors.push(...hexMatches);
+
+            const rgbMatches = text.match(colorPatterns.rgb) || [];
+            const rgbaMatches = text.match(colorPatterns.rgba) || [];
+            colors.push(...rgbMatches, ...rgbaMatches);
+
+            const namedMatches = text.match(colorPatterns.namedColors) || [];
+            namedColors = namedMatches;
+
+            return {
+                technical: colors,
+                named: namedColors
+            };
+        }
+
+        function toggleRandomCheckbox() {
+            if (isCheckingPhase) {
+                // Find an unchecked checkbox
+                const uncheckedBoxes = checkboxes.filter(cb => !cb.checked);
+                if (uncheckedBoxes.length === 0) {
+                    isCheckingPhase = false;
+                    return;
+                }
+                const randomIndex = Math.floor(Math.random() * uncheckedBoxes.length);
+                uncheckedBoxes[randomIndex].checked = true;
+                checkedCount++;
+            } else {
+                // Find a checked checkbox
+                const checkedBoxes = checkboxes.filter(cb => cb.checked);
+                if (checkedBoxes.length === 0) {
+                    isCheckingPhase = true;
+                    return;
+                }
+                const randomIndex = Math.floor(Math.random() * checkedBoxes.length);
+                checkedBoxes[randomIndex].checked = false;
+                checkedCount--;
+            }
+            updateStats();
+        }
+
+        function connectWebSocket() {
+            const randomJetstream = JETSTREAMS[Math.floor(Math.random() * JETSTREAMS.length)];
+            const ws = new WebSocket(`${randomJetstream}/subscribe?wantedCollections=app.bsky.feed.post`);
+
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+
+                if (data.commit?.record?.text) {
+                    const colors = extractColors(data.commit.record.text);
+                    if (colors.technical.length === 0 && colors.named.length === 0) {
+                        toggleRandomCheckbox();
+                        console.log(data.commit?.record?.text);
+                    }
+                }
+            };
+
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error);
+                setTimeout(connectWebSocket, 1000);
+            };
+
+            ws.onclose = () => {
+                setTimeout(connectWebSocket, 1000);
+            };
+        }
+
+        // Start the visualization
+        connectWebSocket();
+        updateStats();
+    </script>
+</body>
+</html>
