@@ -3,163 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tumi International Dinner</title>
+    <title>Tumi International Dinner - First-Timers Guide</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #FFF7E6;
-            color: #4A2C19;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .card {
-            background: #FFF4E0;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .card h1, .card h3 {
-            color: #D45D00;
-        }
-
-        .timer {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
-        }
-
-        .timer div {
+        .curved-header {
+            position: relative;
+            padding-top: 4rem;
             text-align: center;
-            background: #FFF;
-            border-radius: 5px;
-            padding: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transform: rotate(-10deg) translateY(-1rem);
         }
-
-        .timer div span {
-            display: block;
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #D45D00;
+        
+        .curved-text {
+            display: inline-block;
+            transform: rotate(10deg);
         }
-
-        .section {
-            margin-bottom: 20px;
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
         }
-
-        .section h3 {
-            margin-bottom: 10px;
+        
+        .icon {
+            width: 24px;
+            height: 24px;
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+            color: #ea580c;
         }
-
-        .section p {
-            line-height: 1.6;
-        }
-
-        .tips ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .tips li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .tips li span {
-            color: #D45D00;
-            margin-right: 10px;
-        }
-
-        @media (max-width: 600px) {
-            .timer {
-                flex-direction: column;
-                gap: 10px;
+        
+        @media (max-width: 640px) {
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
             }
+            
+            .section-content {
+                padding: 1rem;
+            }
+            
+            .curved-header {
+                padding-top: 2rem;
+            }
+        }
+
+        .phone-link {
+            color: #ea580c;
+            text-decoration: underline;
+        }
+
+        .map-link {
+            color: #ea580c;
+            word-break: break-all;
+            text-decoration: underline;
+        }
+
+        .quick-tips {
+            background-color: #fff7ed;
+            border: 1px solid #fed7aa;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="card">
-            <h1>Tumi International Dinner</h1>
-            <p>First-Timers Guide</p>
+<body class="bg-gray-50">
+    <div class="max-w-4xl mx-auto p-4 sm:p-6 font-sans">
+        <div class="bg-orange-50 rounded-lg shadow-lg overflow-hidden mb-6">
+            <div class="space-y-2 pt-16 px-4 sm:px-6">
+                <div class="flex flex-col items-center justify-center relative">
+                    <div class="absolute top-0 w-full h-32 bg-gradient-to-b from-orange-100/50"></div>
+                    <div class="curved-header">
+                        <h1 class="curved-text text-4xl font-normal text-orange-800 font-serif">
+                            Tumi International Dinner
+                        </h1>
+                    </div>
+                    <p class="text-2xl text-center text-orange-600 font-light mt-8">
+                        First-Timers Guide
+                    </p>
+                </div>
+            </div>
 
-            <div class="timer">
-                <div><span id="days">0</span> Days</div>
-                <div><span id="hours">0</span> Hours</div>
-                <div><span id="minutes">0</span> Minutes</div>
-                <div><span id="seconds">0</span> Seconds</div>
+            <div class="p-4 sm:p-6">
+                <div class="countdown-grid grid grid-cols-4 gap-4 mb-8">
+                    <div class="countdown-item">
+                        <div class="text-4xl font-light text-orange-700" id="days">0</div>
+                        <div class="text-sm text-orange-600">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="text-4xl font-light text-orange-700" id="hours">0</div>
+                        <div class="text-sm text-orange-600">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="text-4xl font-light text-orange-700" id="minutes">0</div>
+                        <div class="text-sm text-orange-600">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="text-4xl font-light text-orange-700" id="seconds">0</div>
+                        <div class="text-sm text-orange-600">Seconds</div>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="flex items-start gap-4">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <div>
+                            <h3 class="font-serif text-xl mb-2 text-orange-800">When We Meet</h3>
+                            <p class="text-orange-900/80 leading-relaxed">
+                                Join us every Friday at 7:00 PM! Feel free to come around 6:45 PM to mingle and 
+                                get comfortable. We start on time and usually wrap up around 10:00 PM, but time flies when you're 
+                                having fun!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                            <line x1="4" y1="22" x2="4" y2="15"></line>
+                        </svg>
+                        <div>
+                            <h3 class="font-serif text-xl mb-2 text-orange-800">How We Dine</h3>
+                            <p class="text-orange-900/80 leading-relaxed">
+                                Each week brings exciting flavors from different corners of the world, served 
+                                family-style. The dinner features one carefully crafted dish that comes in two options: 
+                                vegetarian (₵75) and non-vegetarian (₵100). Both soft drinks and alcoholic beverages 
+                                are available to order from Tumi Cafe. Don't worry about dietary needs - just 
+                                let us know a day ahead, and we'll make sure you're well taken care of.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        <div>
+                            <h3 class="font-serif text-xl mb-2 text-orange-800">The Vibe</h3>
+                            <p class="text-orange-900/80 leading-relaxed">
+                                Think of it as a dinner party with friends you haven't met yet! The atmosphere is 
+                                casual and welcoming. Wear whatever makes you comfortable (though most folks go for 
+                                smart casual). Love wine? Feel free to bring your favorite bottle!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <div>
+                            <h3 class="font-serif text-xl mb-2 text-orange-800">Reserve Your Spot</h3>
+                            <p class="text-orange-900/80 leading-relaxed">
+                                Each Friday's menu is announced in the morning through our WhatsApp group. 
+                                First-timers, please ask to join the WhatsApp group when making your reservation; it's where all the 
+                                menu reveals and dinner announcements happen. Remember to book your spot before 4 PM on Friday, as 
+                                that's when our reservations close. This helps us prepare the perfect amount of food and ensure 
+                                everyone has a seat at the table!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <div>
+                            <h3 class="font-serif text-xl mb-2 text-orange-800">Finding Us</h3>
+                            <p class="text-orange-900/80 leading-relaxed">
+                                We're at Tumi Ghana, located at Sobolo 4 junction, Asokwa. We're a few minutes 
+                                drive from Bull Dog Pub, close to the Kumasi Sports stadium. Convenient parking is available 
+                                on site. Find us on Google Maps: 
+                                <a href="https://maps.app.goo.gl/ie9Lt5ky2nFdiXn97" class="map-link" target="_blank">
+                                    https://maps.app.goo.gl/ie9Lt5ky2nFdiXn97
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-6 quick-tips rounded-lg shadow-sm">
+                        <h3 class="font-serif text-xl mb-3 text-orange-800">Quick Tips</h3>
+                        <ul class="space-y-3 text-orange-900/80 leading-relaxed">
+                            <li class="flex gap-2">
+                                <span class="text-orange-600">•</span>
+                                Say hi to our host when you arrive - they'll help you feel right at home
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-orange-600">•</span>
+                                Jump into any conversation that interests you - we're all here to connect!
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-orange-600">•</span>
+                                Cash makes bill-splitting easier at the end of the night - our host Tumi Cafe accepts only cash and MTN MoMo payments
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-orange-600">•</span>
+                                Need help? Call us at <a href="tel:+233553977756" class="phone-link">+233 55 397 7756</a> for any assistance
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="card section">
-            <h3>When We Meet</h3>
-            <p>Join us every Friday at 7:00 PM! Feel free to come around 6:45 PM to mingle and get comfortable. We start on time and usually wrap up around 10:00 PM, but time flies when you're having fun!</p>
-        </div>
-
-        <div class="card section">
-            <h3>How We Dine</h3>
-            <p>Each week brings exciting flavors from different corners of the world, served family-style. The dinner features one carefully crafted dish that comes in two options: vegetarian (₵75) and non-vegetarian (₵100). Both soft drinks and alcoholic beverages are available to order from Tumi Cafe. Don't worry about dietary needs - just let us know a day ahead, and we'll make sure you're well taken care of.</p>
-        </div>
-
-        <div class="card section">
-            <h3>The Vibe</h3>
-            <p>Think of it as a dinner party with friends you haven't met yet! The atmosphere is casual and welcoming. Wear whatever makes you comfortable (though most folks go for smart casual). Love wine? Feel free to bring your favorite bottle!</p>
-        </div>
-
-        <div class="card section">
-            <h3>Reserve Your Spot</h3>
-            <p>Each Friday's menu is announced in the morning through our WhatsApp group. First-timers, please ask to join the WhatsApp group when making your reservation; it's where all the menu reveals and dinner announcements happen. Remember to book your spot before 4 PM on Friday, as that's when our reservations close. This helps us prepare the perfect amount of food and ensure everyone has a seat at the table!</p>
-        </div>
-
-        <div class="card section">
-            <h3>Finding Us</h3>
-            <p>We're at Tumi Ghana, located at Sobolo 4 junction, Asokwa. We're a few minutes drive from Bull Dog Pub, close to the Kumasi Sports stadium. Convenient parking is available on site. Find us on Google Maps: <a href="https://maps.app.goo.gl/ie9Lt5ky2nFdiXn97" target="_blank">Location</a>.</p>
-        </div>
-
-        <div class="card tips">
-            <h3>Quick Tips for First-Timers</h3>
-            <ul>
-                <li><span>•</span> Say hi to our host when you arrive - they'll help you feel right at home</li>
-                <li><span>•</span> Jump into any conversation that interests you - we're all here to connect!</li>
-                <li><span>•</span> Cash makes bill-splitting easier at the end of the night - our host Tumi Cafe accepts only cash and MTN MoMo payments</li>
-                <li><span>•</span> Need help? Call us at +233 55 397 7756 for any assistance</li>
-            </ul>
-        </div>
     </div>
+    <footer class="text-center py-6 text-orange-600 text-sm">
+        put together with ❤️ by Sam & Nele
+    </footer>
 
     <script>
-        function updateTimer() {
-            const now = new Date();
-            const nextFriday = new Date();
-            nextFriday.setDate(now.getDate() + ((7 - now.getDay() + 5) % 7));
-            nextFriday.setHours(19, 0, 0, 0);
+        document.addEventListener('DOMContentLoaded', function() {
+            function getNextFriday() {
+                const now = new Date();
+                const nextFriday = new Date();
+                nextFriday.setDate(now.getDate() + ((7 - now.getDay() + 5) % 7));
+                nextFriday.setHours(19, 0, 0, 0);
+                return nextFriday;
+            }
 
-            const diff = nextFriday - now;
+            function updateCountdown() {
+                const now = new Date();
+                const difference = getNextFriday() - now;
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / (1000 * 60)) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((difference / 1000 * 60) % 60);
+                const seconds = Math.floor((difference / 1000) % 60);
 
-            document.getElementById("days").textContent = days;
-            document.getElementById("hours").textContent = hours;
-            document.getElementById("minutes").textContent = minutes;
-            document.getElementById("seconds").textContent = seconds;
-        }
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }
 
-        setInterval(updateTimer, 1000);
-        updateTimer();
+            // Initial update
+            updateCountdown();
+            // Update every second
+            setInterval(updateCountdown, 1000);
+        });
     </script>
 </body>
 </html>
