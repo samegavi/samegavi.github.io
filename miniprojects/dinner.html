@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tumi International Dinner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFF7E6;
+            color: #4A2C19;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: #FFF4E0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card h1, .card h3 {
+            color: #D45D00;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .timer div {
+            text-align: center;
+            background: #FFF;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .timer div span {
+            display: block;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #D45D00;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            line-height: 1.6;
+        }
+
+        .tips ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .tips li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .tips li span {
+            color: #D45D00;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .timer {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Tumi International Dinner</h1>
+            <p>First-Timers Guide</p>
+
+            <div class="timer">
+                <div><span id="days">0</span> Days</div>
+                <div><span id="hours">0</span> Hours</div>
+                <div><span id="minutes">0</span> Minutes</div>
+                <div><span id="seconds">0</span> Seconds</div>
+            </div>
+        </div>
+
+        <div class="card section">
+            <h3>When We Meet</h3>
+            <p>Join us every Friday at 7:00 PM! Feel free to come around 6:45 PM to mingle and get comfortable. We start on time and usually wrap up around 10:00 PM, but time flies when you're having fun!</p>
+        </div>
+
+        <div class="card section">
+            <h3>How We Dine</h3>
+            <p>Each week brings exciting flavors from different corners of the world, served family-style. The dinner features one carefully crafted dish that comes in two options: vegetarian (₵75) and non-vegetarian (₵100). Both soft drinks and alcoholic beverages are available to order from Tumi Cafe. Don't worry about dietary needs - just let us know a day ahead, and we'll make sure you're well taken care of.</p>
+        </div>
+
+        <div class="card section">
+            <h3>The Vibe</h3>
+            <p>Think of it as a dinner party with friends you haven't met yet! The atmosphere is casual and welcoming. Wear whatever makes you comfortable (though most folks go for smart casual). Love wine? Feel free to bring your favorite bottle!</p>
+        </div>
+
+        <div class="card section">
+            <h3>Reserve Your Spot</h3>
+            <p>Each Friday's menu is announced in the morning through our WhatsApp group. First-timers, please ask to join the WhatsApp group when making your reservation; it's where all the menu reveals and dinner announcements happen. Remember to book your spot before 4 PM on Friday, as that's when our reservations close. This helps us prepare the perfect amount of food and ensure everyone has a seat at the table!</p>
+        </div>
+
+        <div class="card section">
+            <h3>Finding Us</h3>
+            <p>We're at Tumi Ghana, located at Sobolo 4 junction, Asokwa. We're a few minutes drive from Bull Dog Pub, close to the Kumasi Sports stadium. Convenient parking is available on site. Find us on Google Maps: <a href="https://maps.app.goo.gl/ie9Lt5ky2nFdiXn97" target="_blank">Location</a>.</p>
+        </div>
+
+        <div class="card tips">
+            <h3>Quick Tips for First-Timers</h3>
+            <ul>
+                <li><span>•</span> Say hi to our host when you arrive - they'll help you feel right at home</li>
+                <li><span>•</span> Jump into any conversation that interests you - we're all here to connect!</li>
+                <li><span>•</span> Cash makes bill-splitting easier at the end of the night - our host Tumi Cafe accepts only cash and MTN MoMo payments</li>
+                <li><span>•</span> Need help? Call us at +233 55 397 7756 for any assistance</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateTimer() {
+            const now = new Date();
+            const nextFriday = new Date();
+            nextFriday.setDate(now.getDate() + ((7 - now.getDay() + 5) % 7));
+            nextFriday.setHours(19, 0, 0, 0);
+
+            const diff = nextFriday - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
