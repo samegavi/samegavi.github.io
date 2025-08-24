@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achebe-Bala</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 30px;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+        
+        .date {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-style: italic;
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .story-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        .story-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .story-content p:first-child::first-letter {
+            font-size: 3rem;
+            font-weight: bold;
+            float: left;
+            line-height: 1;
+            margin-right: 8px;
+            margin-top: 4px;
+        }
+        
+        .story-content a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        
+        .story-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .video-section {
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .video-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .video-container iframe {
+            width: 560px;
+            height: 315px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 0 10px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .story-content {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+            
+            .story-content p:first-child::first-letter {
+                font-size: 2.5rem;
+            }
+            
+            .video-container iframe {
+                width: 100%;
+                max-width: 400px;
+                height: 225px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .video-container iframe {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Achebe-Bala</h1>
+            <div class="date">24 August 2025</div>
+        </header>
+        
+        <main class="story-content">
+            <p>Interviews are one of my favorite things to read or watch online ...and boy I've consumed soo many. Last Sunday however, I helped produce one for Accra Atheists(AA). <a href="https://communitynewbies.github.io/reasonrising/" target="_blank" rel="noopener noreferrer">Reason Rising</a> interview and discussion series is an initiative of Rosyln Mould, Founder & President of Accra Atheists and Vice President of Humanists International(HI).</p>
+
+            <p>Before Roslyn announced the list of potential interviewees I'd never heard of Mubarak Bala and his struggles as a humanist breaking free from Islamic traditions that has held his family together for decades if not centuries in Northern Nigeria. However, a Ghanaian interviewing a Nigerian with themes of tradition, religion and exile reminded me of philosopher Kwame Anthony Appiah's interview of the Nigerian literary giant Chinua Achebe 13 years ago.</p>
+
+            <p>There are interesting parallels and contrasts in Achebe and Bala's accounts, both outsiders and insiders at the same time, of Igbo and Hausa cultures in Nigeria. I highly recommend watching them as a double to uncover the echoes in time for yourself.</p>
+        </main>
+        
+        <section class="video-section">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/rFt3OWhfkN4" title="Kwame Anthony Appiah interviews Chinua Achebe" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/D4MB6exRKUg" title="Mubarak Bala interview" allowfullscreen></iframe>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
