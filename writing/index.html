@@ -57,7 +57,6 @@
         
         .subtitle {
             font-family: 'Georgia', 'Times New Roman', serif;
-            font-style: italic;
             color: #666;
             text-align: center;
             margin-bottom: 30px;
@@ -65,14 +64,20 @@
         }
         
         .writings-list {
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
         }
         
         .writing-item {
             display: flex;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #ddd;
+            padding: 0.7rem 0.5rem;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+        
+        .writing-item:hover {
+            background-color: #f8f9fa !important;
         }
         
         .writing-item:last-child {
@@ -80,7 +85,7 @@
         }
         
         .writing-item:nth-child(even) {
-            background-color: #f8f9fa;
+            background-color: #f5f5f5;
         }
         
         .writing-item:nth-child(odd) {
@@ -89,23 +94,28 @@
         
         .writing-date {
             flex: 0 0 130px;
-            color: #666;
-            font-size: 1rem;
+            color: #777;
+            font-size: 0.95rem;
+            font-weight: 500;
         }
         
         .writing-title {
-            flex: 0 0 150px;
+            flex: 0 0 140px;
             font-size: 1rem;
-            margin-right: 1rem;
+            margin-right: 1.2rem;
         }
         
         .writing-title a {
-            color: #3b82f6;
+            color: #2563eb;
             text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 2px;
+            transition: color 0.2s ease;
         }
         
         .writing-title a:hover {
-            color: #1a5fb4;
+            color: #1d4ed8;
+            text-decoration-thickness: 2px;
         }
         
         .writing-description {
@@ -113,6 +123,7 @@
             color: #666;
             font-size: 0.95rem;
             font-style: italic;
+            line-height: 1.4;
         }
         
         /* Mobile responsiveness */
@@ -130,11 +141,13 @@
             }
             
             .writing-date {
-                flex: 0 0 110px;
+                flex: 0 0 120px;
+                font-size: 0.9rem;
             }
             
             .writing-title {
-                flex: 0 0 130px;
+                flex: 0 0 140px;
+                margin-right: 1rem;
             }
         }
         
@@ -143,17 +156,29 @@
                 font-size: 1.8rem;
             }
             
+            .writing-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem 0.5rem;
+            }
+            
+            .writing-date, .writing-title {
+                flex: none;
+                margin-bottom: 0.3rem;
+            }
+            
             .writing-date {
-                flex: 0 0 90px;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
             
             .writing-title {
-                flex: 0 0 110px;
+                margin-right: 0;
+                margin-bottom: 0.5rem;
             }
             
             .writing-description {
-                font-size: 0.85rem;
+                font-size: 0.9rem;
+                margin-left: 0;
             }
         }
     </style>
@@ -179,7 +204,7 @@
                 <div class="writing-title">
                     <a href="achebe-bala.html">Achebe-Bala</a>
                 </div>
-                <div class="writing-description">review: reflections on tradition, exile, and identity</div>
+                <div class="writing-description">review: Mubarak Bala interview - Accra Atheists</div>
             </div>
             
             <div class="writing-item">
