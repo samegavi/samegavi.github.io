@@ -1,0 +1,14 @@
+Embeddings
+
+1. https://www.ben-evans.com/benedictevans/2019/4/8/mechanical-turks
+
+2. https://www.ben-evans.com/benedictevans/2018/06/22/ways-to-think-about-machine-learning-8nefy
+
+3. https://www.ben-evans.com/benedictevans/2019/7/19/computers-that-can-see
+
+4. https://longnow.org/talks/02025-allado-mcdowell/
+
+5. https://www.pinecone.io/learn/vector-embeddings-for-developers/
+
+6. https://projector.tensorflow.org/
+
