@@ -65,41 +65,54 @@
         }
         
         .writings-list {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
         
         .writing-item {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            border-bottom: 1px solid #f0f0f0;
-            text-align: center;
+            display: flex;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #ddd;
         }
         
         .writing-item:last-child {
             border-bottom: none;
         }
         
+        .writing-item:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .writing-item:nth-child(odd) {
+            background-color: #fff;
+        }
+        
         .writing-date {
-            font-style: italic;
+            flex: 0 0 130px;
             color: #666;
             font-size: 1rem;
-            margin-bottom: 0.5rem;
         }
         
         .writing-title {
-            font-size: 1.3rem;
-            font-weight: bold;
+            flex: 0 0 150px;
+            font-size: 1rem;
+            margin-right: 1rem;
         }
         
         .writing-title a {
-            color: #1a1a1a;
-            text-decoration: none;
+            color: #3b82f6;
+            text-decoration: underline;
         }
         
         .writing-title a:hover {
-            color: #3b82f6;
-            text-decoration: underline;
+            color: #1a5fb4;
+        }
+        
+        .writing-description {
+            flex: 1;
+            color: #666;
+            font-size: 0.95rem;
+            font-style: italic;
         }
         
         /* Mobile responsiveness */
@@ -116,12 +129,12 @@
                 font-size: 2rem;
             }
             
-            .writing-item {
-                padding: 1rem;
+            .writing-date {
+                flex: 0 0 110px;
             }
             
             .writing-title {
-                font-size: 1.2rem;
+                flex: 0 0 130px;
             }
         }
         
@@ -130,8 +143,17 @@
                 font-size: 1.8rem;
             }
             
+            .writing-date {
+                flex: 0 0 90px;
+                font-size: 0.9rem;
+            }
+            
             .writing-title {
-                font-size: 1.1rem;
+                flex: 0 0 110px;
+            }
+            
+            .writing-description {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -149,6 +171,7 @@
                 <div class="writing-title">
                     <a href="embeddings.html">Embeddings</a>
                 </div>
+                <div class="writing-description">curated links on machine learning and AI</div>
             </div>
             
             <div class="writing-item">
@@ -156,13 +179,15 @@
                 <div class="writing-title">
                     <a href="achebe-bala.html">Achebe-Bala</a>
                 </div>
+                <div class="writing-description">review: reflections on tradition, exile, and identity</div>
             </div>
             
             <div class="writing-item">
-                <div class="writing-date">2024</div>
+                <div class="writing-date">8 June 2025</div>
                 <div class="writing-title">
                     <a href="akwete.html">Akwete</a>
                 </div>
+                <div class="writing-description">short story: a ride-share driver's encounters across cultures</div>
             </div>
         </main>
     </div>
