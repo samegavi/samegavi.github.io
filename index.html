@@ -1,111 +1,378 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="auto">
 <head>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #f0f0f0;
-      font-family: Arial, sans-serif;
-      position: relative;
-    }
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sam Amegavi</title>
+    <meta name="description" content="Personal website featuring creative writing, mini projects, and teaching materials">
+    <meta name="author" content="Sam Amegavi">
     
-    .name {
-      font-size: 3rem;
-      font-weight: bold;
-      animation: colorChange 4s infinite;
-    }
-    
-    .letter {
-      display: inline-block;
-      animation: bounce 1s ease-in-out infinite;
-    }
-    
-    .corner-link {
-      position: absolute;
-      top: 25vw;
-      left: 20px;
-      text-decoration: none;
-      color: #333;
-      font-family: 'Comic Sans MS', 'Marker Felt', cursive;
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .corner-link + br + .corner-link {
-      top: 27.5vw;  /* Changed from 30vw to 27.5vw */
-    }
-    
-    .new-tag {
-      background-color: #ff6b6b;
-      color: white;
-      padding: 2px 6px;
-      border-radius: 10px;
-      font-size: 0.7rem;
-      font-family: Arial, sans-serif;
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-    
-    .corner-link:hover {
-      text-decoration: underline;
-      color: #45b7d1;
-    }
-    
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-    
-    @keyframes colorChange {
-      0% { color: #ff6b6b; }
-      33% { color: #4ecdc4; }
-      66% { color: #45b7d1; }
-      100% { color: #ff6b6b; }
-    }
-    
-    .letter:nth-child(2) { animation-delay: 0.1s; }
-    .letter:nth-child(3) { animation-delay: 0.2s; }
-    .letter:nth-child(4) { animation-delay: 0.3s; }
-    .letter:nth-child(5) { animation-delay: 0.4s; }
-    .letter:nth-child(6) { animation-delay: 0.5s; }
-    .letter:nth-child(7) { animation-delay: 0.6s; }
-    .letter:nth-child(8) { animation-delay: 0.7s; }
-    .letter:nth-child(9) { animation-delay: 0.8s; }
-    .letter:nth-child(10) { animation-delay: 0.9s; }
-    .letter:nth-child(11) { animation-delay: 1.0s; }
-  </style>
+    <style>
+        /* PaperMod Profile Mode Styling */
+        :root{
+            --gap:24px;
+            --content-gap:20px;
+            --nav-width:1024px;
+            --main-width:720px;
+            --header-height:60px;
+            --footer-height:60px;
+            --radius:8px;
+            --theme:rgb(255, 255, 255);
+            --entry:rgb(255, 255, 255);
+            --primary:rgb(30, 30, 30);
+            --secondary:rgb(108, 108, 108);
+            --tertiary:rgb(214, 214, 214);
+            --content:rgb(31, 31, 31);
+            --code-block-bg:rgb(28, 29, 33);
+            --code-bg:rgb(245, 245, 245);
+            --border:rgb(238, 238, 238);
+        }
+        
+        .dark{
+            --theme:rgb(29, 30, 32);
+            --entry:rgb(46, 46, 51);
+            --primary:rgb(218, 218, 219);
+            --secondary:rgb(155, 156, 157);
+            --tertiary:rgb(65, 66, 68);
+            --content:rgb(196, 196, 197);
+            --code-block-bg:rgb(46, 46, 51);
+            --code-bg:rgb(55, 56, 62);
+            --border:rgb(51, 51, 51);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            -webkit-tap-highlight-color: transparent;
+            overflow-y: scroll;
+        }
+        
+        body {
+            font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,Oxygen,Ubuntu,Cantarell,open sans,helvetica neue,sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            word-break: break-word;
+            background: var(--theme);
+            color: var(--primary);
+            margin: 0;
+            padding: 0;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+        
+        /* Header styles */
+        .header {
+            line-height: var(--header-height);
+        }
+        
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: calc(var(--nav-width) + var(--gap) * 2);
+            margin: 0 auto;
+            padding: 0 var(--gap);
+        }
+        
+        .logo {
+            display: flex;
+            margin: auto var(--gap);
+        }
+        
+        .logo a {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        #menu {
+            display: flex;
+            list-style: none;
+            margin: auto var(--gap);
+            padding: 0;
+        }
+        
+        #menu li + li {
+            margin-left: var(--gap);
+        }
+        
+        #menu a {
+            font-size: 16px;
+        }
+        
+        #menu .active {
+            font-weight: 500;
+            border-bottom: 2px solid;
+        }
+        
+        /* Theme toggle */
+        #theme-toggle {
+            background: none;
+            border: none;
+            font-size: 26px;
+            margin: auto 4px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        .dark #moon {
+            display: none;
+        }
+        
+        body:not(.dark) #sun {
+            display: none;
+        }
+        
+        /* Main content */
+        .main {
+            position: relative;
+            min-height: calc(100vh - var(--header-height) - var(--footer-height));
+            max-width: calc(var(--main-width) + var(--gap) * 2);
+            margin: auto;
+            padding: var(--gap);
+        }
+        
+        .profile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - var(--header-height) - var(--footer-height) - (var(--gap) * 2));
+            text-align: center;
+        }
+        
+        .profile_inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .profile img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+        }
+        
+        .profile h1 {
+            font-size: 2.5rem;
+            margin: 10px 0 5px 0;
+        }
+        
+        .profile span {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Social icons */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            padding: 10px;
+        }
+        
+        .social-icons svg {
+            height: 26px;
+            width: 26px;
+        }
+        
+        /* Buttons */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 400px;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .button {
+            background: var(--tertiary);
+            border-radius: var(--radius);
+            margin: 8px;
+            padding: 6px;
+            transition: transform .1s;
+            text-decoration: none;
+        }
+        
+        .button:hover {
+            transform: scale(1.05);
+        }
+        
+        .button:active {
+            transform: scale(.96);
+        }
+        
+        .button-inner {
+            padding: 0 8px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        .footer {
+            font-size: 12px;
+            color: var(--secondary);
+            max-width: calc(var(--main-width) + var(--gap) * 2);
+            margin: auto;
+            padding: calc((var(--footer-height) - var(--gap))/2) var(--gap);
+            text-align: center;
+            line-height: 24px;
+        }
+        
+        /* Dark mode toggle functionality */
+        body.dark {
+            background: var(--theme);
+            color: var(--primary);
+        }
+        
+        /* Mobile responsiveness */
+        @media screen and (max-width: 768px) {
+            :root {
+                --gap: 14px;
+            }
+            
+            .profile img {
+                transform: scale(.85);
+            }
+            
+            .profile h1 {
+                font-size: 2rem;
+            }
+            
+            .nav {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            #menu {
+                justify-content: center;
+                margin: 10px auto;
+            }
+            
+            .buttons {
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
-<body>
-  <a href="miniprojects/" class="corner-link">
-    mini projects
-    <span class="new-tag">NEW</span>
-  </a><br>
-  <a href="teaching/" class="corner-link">
-    teaching
-  </a>
-  <div class="name">
-    <span class="letter">S</span>
-    <span class="letter">a</span>
-    <span class="letter">m</span>
-    <span class="letter">&nbsp;</span>
-    <span class="letter">A</span>
-    <span class="letter">m</span>
-    <span class="letter">e</span>
-    <span class="letter">g</span>
-    <span class="letter">a</span>
-    <span class="letter">v</span>
-    <span class="letter">i</span>
-  </div>
+
+<body class="list" id="top">
+    <script>
+        if (localStorage.getItem("pref-theme") === "dark") {
+            document.body.classList.add('dark');
+        } else if (localStorage.getItem("pref-theme") === "light") {
+            document.body.classList.remove('dark');
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+        }
+    </script>
+
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <a href="/" accesskey="h" title="Sam Amegavi (Alt + H)">Sam Amegavi</a>
+                <div class="logo-switches">
+                    <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <ul id="menu">
+                <li>
+                    <a href="index-profile.html" title="Home">
+                        <span class="active">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="writing/index.html" title="Writing">
+                        <span>Writing</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="profile">
+            <div class="profile_inner">
+                <img draggable="false" src="profile.jpg" alt="Sam Amegavi" title="Sam Amegavi" height="120" width="120" />
+                <h1>Sam Amegavi</h1>
+                <span>Engineer, Writer &amp; Teacher</span>
+                
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/sam-amegavi-6052375/" target="_blank" rel="noopener noreferrer me" title="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/samegavi" target="_blank" rel="noopener noreferrer me" title="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                    </a>
+                    <a href="mailto:samegavi@gmail.com" target="_blank" rel="noopener noreferrer me" title="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="buttons">
+                    <a class="button" href="writing/index.html" rel="noopener" title="Writing">
+                        <span class="button-inner">Writing</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <span>&copy; 2025 <a href="index-profile.html">Sam Amegavi</a></span> · 
+        <span>Engineer, Writer &amp; Teacher</span>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            if (document.body.classList.contains('dark')) {
+                document.body.classList.remove('dark');
+                localStorage.setItem('pref-theme', 'light');
+            } else {
+                document.body.classList.add('dark');
+                localStorage.setItem('pref-theme', 'dark');
+            }
+        });
+    </script>
 </body>
 </html>
